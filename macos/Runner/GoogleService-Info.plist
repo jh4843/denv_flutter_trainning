@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>486675566399-l8rd7c6nsp83514sh91fnuqktr473586.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.486675566399-l8rd7c6nsp83514sh91fnuqktr473586</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDvwhH1bDl5Jt8eCp0Ljzo4O9bKJgrNsbM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>486675566399</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.denvFlutterTraining.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>denv-funcs</string>
+	<key>STORAGE_BUCKET</key>
+	<string>denv-funcs.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:486675566399:ios:75d4486bebace904d44d8a</string>
+</dict>
+</plist>
