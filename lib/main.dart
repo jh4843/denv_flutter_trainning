@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import './firebase_options.dart';
@@ -21,7 +19,7 @@ final _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (context, state) =>
-          const MyHomePage(title: 'Flutter Demo Home Page'),
+          const MyHomePage(title: 'Denv Flutter Training'),
       routes: const [],
     ),
     GoRoute(
@@ -36,7 +34,7 @@ final _router = GoRouter(
     GoRoute(
         path: '/ui',
         builder: (context, state) =>
-            const MyHomePage(title: 'Flutter Demo Home Page'),
+            const MyHomePage(title: 'Denv Flutter Training'),
         routes: <RouteBase>[
           GoRoute(
             name: "layouts",

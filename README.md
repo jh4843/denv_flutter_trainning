@@ -29,4 +29,26 @@ Add dependency
 $ flutter pub add firebase_core
 ```
 
+Configuration
+
+```console
+$ flutterfire configure
+```
+
 ## go_router
+
+ref
+
+- https://pub.dev/packages/go_router
+
+install
+
+```console
+flutter pub add go_router
+```
+
+import
+
+```dart
+import 'package:go_router/go_router.dart';
+```
