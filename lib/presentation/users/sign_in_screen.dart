@@ -1,32 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class SignInScreen extends StatefulWidget {
+class SignInScreen extends ConsumerWidget {
   const SignInScreen({super.key, required this.title});
 
   final String title;
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
-}
-
-class _SignInScreenState extends State<SignInScreen> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
+      body: Container(
+        color: const Color.fromARGB(180, 205, 226, 242),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              'Sign-In',
-              style: Theme.of(context).textTheme.headlineMedium,
+          children: [
+            Image.asset("asset/images/login_background.png"),
+            Center(
+              child: Container(
+                color: const Color.fromARGB(125, 100, 122, 133),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Text(
+                      'You have pushed the button this many times:',
+                    ),
+                    Text(
+                      'Sign-In',
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),

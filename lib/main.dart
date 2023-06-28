@@ -71,7 +71,8 @@ class _MyAppState extends ConsumerState<MyApp> {
     return MaterialApp.router(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 250, 215, 250)),
         useMaterial3: true,
       ),
       routerConfig: _router,
