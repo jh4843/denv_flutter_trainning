@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
-import '../widgets/denv_drawer.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import '../../widgets/main_drawer.dart';
 
-class LayoutScreen extends StatefulWidget {
-  const LayoutScreen({super.key, required this.title});
-
+class LayoutScreen extends ConsumerWidget {
   final String title;
 
-  @override
-  State<LayoutScreen> createState() => _LayoutScreenState();
-}
+  const LayoutScreen({super.key, required this.title});
 
-class _LayoutScreenState extends State<LayoutScreen> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text(title),
       ),
-      drawer: const DenvDrawer(),
+      drawer: const MainDrawer(),
       body: Container(
         padding: const EdgeInsets.all(10),
         child: const Column(

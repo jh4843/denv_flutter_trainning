@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class DenvDrawer extends StatelessWidget {
-  const DenvDrawer({
+class MainDrawer extends StatelessWidget {
+  const MainDrawer({
     super.key,
   });
 
@@ -46,6 +46,19 @@ class DenvDrawer extends StatelessWidget {
                 leading: const Icon(Icons.dashboard),
                 onTap: () {
                   context.go("/ui/layouts");
+                },
+              ),
+            ],
+          ),
+          ExpansionTile(
+            title: const Text('Drawing'),
+            childrenPadding: const EdgeInsets.only(left: 30),
+            children: [
+              ListTile(
+                title: const Text('Denv Paints'),
+                leading: const Icon(Icons.draw),
+                onTap: () {
+                  context.go("/drawing/paint");
                 },
               ),
             ],

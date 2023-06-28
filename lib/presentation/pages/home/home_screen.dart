@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/denv_drawer.dart';
+import '../../widgets/main_drawer.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -26,7 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      drawer: const DenvDrawer(),
+      drawer: const MainDrawer(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
