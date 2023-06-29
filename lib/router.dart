@@ -10,8 +10,7 @@ final router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) =>
-          const MyHomePage(title: 'Denv Flutter Training'),
+      builder: (context, state) => MyHomePage(title: 'Denv Flutter Training'),
       routes: const [],
     ),
     GoRoute(
@@ -25,7 +24,7 @@ final router = GoRouter(
     //
     GoRoute(
       path: '/ui',
-      builder: (context, state) => const MyHomePage(title: 'UI Training'),
+      builder: (context, state) => MyHomePage(title: 'UI Training'),
       routes: <RouteBase>[
         GoRoute(
           name: "layouts",
@@ -36,8 +35,7 @@ final router = GoRouter(
     ),
     GoRoute(
       path: '/drawing',
-      builder: (context, state) =>
-          const MyHomePage(title: 'Denv Flutter Training'),
+      builder: (context, state) => MyHomePage(title: 'Denv Flutter Training'),
       routes: <RouteBase>[
         GoRoute(
           name: "paint",

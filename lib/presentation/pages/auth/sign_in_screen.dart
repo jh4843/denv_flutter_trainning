@@ -20,8 +20,11 @@ class SignInScreen extends ConsumerWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    const SizedBox(
+                      height: 30,
+                    ),
                     const Text(
-                      'You have pushed the button this many times:',
+                      'Sign In',
                     ),
                     Text(
                       'Sign-In',
