@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import '../../widgets/main_drawer.dart';
 
-class PaintScreen extends StatefulWidget {
-  const PaintScreen({super.key, required this.title});
+class PaintPage extends StatefulWidget {
+  const PaintPage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<PaintScreen> createState() => _PaintScreenState();
+  State<PaintPage> createState() => _PaintPageState();
 }
 
-class _PaintScreenState extends State<PaintScreen> {
+class _PaintPageState extends State<PaintPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

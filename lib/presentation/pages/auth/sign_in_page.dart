@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class SignInScreen extends ConsumerWidget {
-  const SignInScreen({super.key, required this.title});
+class SignInPage extends ConsumerWidget {
+  const SignInPage({super.key, required this.title});
 
   final String title;
 
