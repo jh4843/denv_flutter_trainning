@@ -39,6 +39,10 @@ class FuncCounter extends Notifier<int> {
   void increase() {
     state++;
   }
+
+  void reset() {
+    state = 0;
+  }
 }
 
 final funcCounter = NotifierProvider<FuncCounter, int>(FuncCounter.new);
@@ -56,6 +60,12 @@ class MyHomePage extends ConsumerWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(title),
+        actions: [
+          IconButton(
+            onPressed: () => ref.read(funcCounter.notifier).reset(),
+            icon: const Icon(Icons.refresh),
+          )
+        ],
       ),
       drawer: const MainDrawer(),
       body: Center(

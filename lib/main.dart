@@ -33,8 +33,10 @@ class _MyAppState extends ConsumerState<MyApp> {
     return MaterialApp.router(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 250, 215, 250)),
+        tabBarTheme: const TabBarTheme(
+          labelColor: Colors.pink,
+          labelStyle: TextStyle(color: Colors.green), // color for text
+        ),
         useMaterial3: true,
       ),
       routerConfig: router,
