@@ -3,11 +3,12 @@
 - reference
   - https://medium.com/ruangguru/an-introduction-to-flutter-clean-architecture-ae00154001b0
   - https://devmuaz.medium.com/flutter-clean-architecture-series-part-1-d2d4c2e75c47
+  - https://github.com/rodydavis/flutter_todo_app/
 
 ```
 lib/
 ├── domain/   <-- Core business logic and utilities
-│   ├── entities/    <-- Domain entities or models
+│   ├── models/    <-- Domain entities or models
 │   ├── repositories/    <-- Abstract repository interfaces
 │   └── usecases/    <-- Use cases or interactors
 ├── data/   <-- Data layer
@@ -18,7 +19,7 @@ lib/
 ├── presentation/   <-- Presentation layer (UI)
 │   ├── pages/    <-- Screen pages
 │   ├── widgets/    <-- Reusable UI components
-│   ├── blocs/    <-- BLoC or state management classes
+│   ├── providers/    <-- (Riverpod) state management classes
 │   └── routes.dart    <-- App routes definition
 └── main.dart    <-- Entry point of the app
 ```
@@ -34,7 +35,6 @@ The **presentation** directory focuses on the UI and contains the **pages** fold
 Finally, the **main.dart** file serves as the entry point of the app.
 
 Remember, the directory structure can vary based on the complexity and requirements of your application. It's essential to adapt and tailor it to your specific project needs while adhering to the principles of Clean Architecture.
-
 
 ## Presentation
 
