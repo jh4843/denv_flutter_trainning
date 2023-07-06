@@ -1,9 +1,10 @@
 # Clean Architecture
 
 - reference
+  - https://github.com/rodydavis/flutter_todo_app/
   - https://medium.com/ruangguru/an-introduction-to-flutter-clean-architecture-ae00154001b0
   - https://devmuaz.medium.com/flutter-clean-architecture-series-part-1-d2d4c2e75c47
-  - https://github.com/rodydavis/flutter_todo_app/
+  - https://github.com/Uuttssaavv/flutter-clean-architecture-riverpod/tree/master
 
 ```
 lib/

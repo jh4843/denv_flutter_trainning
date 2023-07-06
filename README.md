@@ -2,43 +2,12 @@
 
 A new Flutter project.
 
-## reference projects
+## Architecture
+- [Clean Architecture](./markdown/CleanArchitecture.md)
 
-- architecture
-  - https://github.com/devmuaz/flutter_clean_architecture/tree/master
-  - https://github.com/Ahmedabdelalem61/flutter-mvvm-arch/tree/main
-  - https://github.com/Uuttssaavv/flutter-clean-architecture-riverpod/tree/master
 
-## go_router
-
-ref
-
-- https://pub.dev/packages/go_router
-
-install
-
-```console
-flutter pub add go_router
-```
-
-import
-
-```dart
-import 'package:go_router/go_router.dart';
-```
-
-## file path provider
-
-Finding commonly used locations on filesystem.
-
-install
-
-```console
-flutter pub add path_provider
-```
-
-import
-
-```dart
-import 'package:path_provider/path_provider.dart';
-```
+## Dependency
+  - [GoRouter](./markdown/GoRouter.md)
+  - [Firebase](./markdown/FireBase.md)
+  - [Riverpod](./markdown/Riverpod2.md)
+  - [Equatable](./markdown/Equatable.md)
