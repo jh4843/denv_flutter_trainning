@@ -1,3 +1,14 @@
+enum SignInType {
+  google,
+  facebook,
+  apple,
+  email,
+  phone,
+  guest,
+  anonymous,
+  none,
+}
+
 class UserModel {
   final String name;
   final String uid;
