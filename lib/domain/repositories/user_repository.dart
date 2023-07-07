@@ -7,7 +7,7 @@ abstract class UserRepository {
   FutureEither<UserModel> signIn(SignInType type,
       {String? id, String? email, String? password});
 
-  Future<bool> signOut(UserModel user);
+  FutureEither<bool> signOut(UserModel user);
 
-  Future<bool> updateUser(UserModel oldUser, UserModel newUser);
+  FutureEither<bool> updateUser(UserModel oldUser, UserModel newUser);
 }

@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 enum SignInType {
   google,
   facebook,
@@ -47,12 +49,29 @@ class UserModel {
     );
   }
 
-    factory UserModel.fromJson(Map<String, dynamic> json) {
+  factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
       name: json['name'],
       uid: json['uid'],
       isAuthenticated: json['isAuthenticated'],
     );
+  }
+
+  // factory function from fromFirebaseUser (UserCredential::User in firebase_auth)
+  factory UserModel.fromFirebaseUser(User user) {
+    return UserModel(
+      name: user.email ?? user.displayName ?? user.phoneNumber ?? user.uid,
+      uid: user.uid,
+      isAuthenticated: true,
+    );
+  }
+
+  Map<Object, Object> toJson() {
+    return {
+      'name': name,
+      'uid': uid,
+      'isAuthenticated': isAuthenticated,
+    };
   }
 
   @override

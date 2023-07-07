@@ -1,43 +1,28 @@
-import "package:dartz/dartz.dart";
+//import "package:dartz/dartz.dart";
+import "package:denv_flutter_training/data/datasources/remote/remote_auth_datasource.dart";
 import "package:denv_flutter_training/domain/models/user_model.dart";
 import "package:denv_flutter_training/domain/repositories/user_repository.dart";
-import "package:denv_flutter_training/core/failure.dart";
 import "package:denv_flutter_training/core/type_defs.dart";
 
 // func to implement the repository in data layer
 
 class UserRepositoryImpl implements UserRepository {
-  final LoginDataSource loginDataSource;
+  final RemoteAuthDataSource remoteAuthDataSource;
 
-  UserRepositoryImpl({required this.loginDataSource});
+  UserRepositoryImpl({required this.remoteAuthDataSource});
 
   @override
   FutureEither<UserModel> signIn(SignInType type, {id, email, password}) async {
-    try {
-      final user = await loginDataSource.signIn(type);
-      return Right(user);
-    } on Failure catch (e) {
-      return Left(e);
-    }
+    return remoteAuthDataSource.signIn(type);
   }
 
   @override
-  Future<bool> signOut(UserModel user) async {
-    try {
-      final isSignOut = await loginDataSource.signOut(user);
-      return isSignOut;
-    } on Failure {
-      return false;
-    }
+  FutureEither<bool> signOut(UserModel user) async {
+    return remoteAuthDataSource.signOut(user);
   }
 
   @override
-  Future<bool> updateUser(UserModel oldUser, UserModel newUser) async {
-    try {
-      final isUpdated = await loginDataSource.updateUser(oldUser, newUser);
-      return isUpdated;
-    } on Failure {
-      return false;
-    }
+  FutureEither<bool> updateUser(UserModel oldUser, UserModel newUser) async {
+    return remoteAuthDataSource.updateUser(oldUser, newUser);
   }
 }
