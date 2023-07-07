@@ -47,6 +47,14 @@ class UserModel {
     );
   }
 
+    factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      name: json['name'],
+      uid: json['uid'],
+      isAuthenticated: json['isAuthenticated'],
+    );
+  }
+
   @override
   String toString() {
     return 'UserModel(name: $name, uid: $uid, isAuthenticated: $isAuthenticated)';

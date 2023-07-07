@@ -1,19 +1,6 @@
-import "package:dartz/dartz.dart";
+// total repositories implement with riverpod provider
 
-// func to implement the repository in data layer
+import "package:hooks_riverpod/hooks_riverpod.dart";
+import "./repositories/user_repository_impl.dart";
 
- class LoginRepositoryImpl implements LoginRepository {
-  final LoginDataSource loginDataSource;
-
-  LoginRepositoryImpl({@required this.loginDataSource});
-
-  @override
-  Future<Either<Failure, LoginResponse>> login(
-      LoginRequest loginRequest) async {
-    try {
-      final response = await loginDataSource.login(loginRequest);
-      return Right(response);
-    } on ServerException {
-      return Left(ServerFailure());
-    }
-  }
+final userProvider = Provider((ref) => UserRepositoryImpl());
