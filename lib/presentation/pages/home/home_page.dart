@@ -68,18 +68,31 @@ class MyHomePage extends ConsumerWidget {
         ],
       ),
       drawer: const MainDrawer(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              counter.toString(),
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/home_background.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'You have pushed the button this many times:',
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: Colors.pink[100],
+                    ),
+              ),
+              Text(
+                counter.toString(),
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: Colors.pink[100],
+                    ),
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

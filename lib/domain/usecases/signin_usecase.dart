@@ -5,12 +5,13 @@ import '../../domain/models/user_model.dart';
 import '../../domain/repositories/user_repository.dart';
 
 class SignInUseCase {
-  final UserRepository loginRepository;
+  final UserRepository userRepository;
 
-  SignInUseCase({required this.loginRepository});
+  SignInUseCase({required this.userRepository});
 
   FutureEither<UserModel> signin(SignInType type,
       {String? id, String? email, String? password}) async {
-    return await loginRepository.signIn(type, id, email, password);
+    return await userRepository.signIn(type,
+        id: id, email: email, password: password);
   }
 }
