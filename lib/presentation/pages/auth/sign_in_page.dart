@@ -10,28 +10,45 @@ class SignInPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Container(
-        color: const Color.fromARGB(180, 205, 226, 242),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Colors.blue.withOpacity(0.8),
+              Colors.grey.withOpacity(0.5),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(10),
+        ),
         child: Column(
           children: [
-            Image.asset("asset/images/login_background.png"),
-            Center(
-              child: Container(
-                color: const Color.fromARGB(125, 100, 122, 133),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    const Text(
-                      'Sign In',
-                    ),
-                    Text(
-                      'Sign-In',
-                      style: Theme.of(context).textTheme.headlineMedium,
-                    ),
-                  ],
-                ),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+              ),
+              child:
+                  // expand image following horizontal direction
+                  Image.asset("images/signin_background.png"),
+            ),
+            Container(
+              alignment: Alignment.center,
+              color: Colors.pink,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  const Text(
+                    'Sign In',
+                  ),
+                  Text(
+                    'Sign-In',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                ],
               ),
             ),
           ],

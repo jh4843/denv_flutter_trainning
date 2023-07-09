@@ -50,6 +50,13 @@ class RemoteAuthDataSource {
           final credential = GoogleAuthProvider.credential(
               accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
           final userCredential = await _auth.signInWithCredential(credential);
+
+          if (userCredential.user == null) {
+            return const Left(
+              Failure("Google sign in failed"),
+            );
+          }
+
           return Right(UserModel.fromFirebaseUser(userCredential.user!));
         default:
           return const Left(Failure("Invalid sign in type"));
