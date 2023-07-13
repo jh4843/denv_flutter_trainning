@@ -36,3 +36,9 @@ build_runner
 ```console
 flutter pub run build_runner watch -d
 ```
+
+or
+
+```console
+flutter pub run build_runner build
+```

@@ -3,7 +3,7 @@
 import 'package:denv_flutter_training/core/failure.dart';
 import 'package:denv_flutter_training/core/type_defs.dart';
 import 'package:denv_flutter_training/core/providers/firebase_providers.dart';
-import 'package:denv_flutter_training/domain/models/user_model.dart';
+import 'package:denv_flutter_training/domain/entities/user_entity.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -33,14 +33,14 @@ class RemoteAuthDataSource {
         _firestore = firestore,
         _googleSignIn = googleSignIn;
 
-  FutureEither<UserModel> signIn(SignInType type,
+  FutureEither<UserEntity> signIn(SignInType type,
       {String? id, String? email, String? password}) async {
     try {
       switch (type) {
         case SignInType.email:
           final UserCredential userCredential = await _auth
               .signInWithEmailAndPassword(email: email!, password: password!);
-          return Right(UserModel.fromFirebaseUser(userCredential.user!));
+          return Right(UserEntity.fromFirebaseUser(userCredential.user!));
         case SignInType.google:
           final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
           if (googleUser == null) {
@@ -57,7 +57,7 @@ class RemoteAuthDataSource {
             );
           }
 
-          return Right(UserModel.fromFirebaseUser(userCredential.user!));
+          return Right(UserEntity.fromFirebaseUser(userCredential.user!));
         default:
           return const Left(Failure("Invalid sign in type"));
       }
@@ -68,7 +68,7 @@ class RemoteAuthDataSource {
     }
   }
 
-  FutureEither<bool> signOut(UserModel user) async {
+  FutureEither<bool> signOut(UserEntity user) async {
     try {
       await _auth.signOut();
       return const Right(true);
@@ -79,7 +79,7 @@ class RemoteAuthDataSource {
     }
   }
 
-  FutureEither<bool> updateUser(UserModel oldUser, UserModel newUser) async {
+  FutureEither<bool> updateUser(UserEntity oldUser, UserEntity newUser) async {
     try {
       await _firestore
           .collection("users")

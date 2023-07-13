@@ -15,6 +15,10 @@ part 'home_page.g.dart';
 // int count(CountRef ref) {
 //   return 0;
 // }
+@riverpod
+String helloWorld(HelloWorldRef ref) {
+  return 'Hello world';
+}
 
 // class-based
 @riverpod

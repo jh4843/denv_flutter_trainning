@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:equatable/equatable.dart';
 
 enum SignInType {
   google,
@@ -11,24 +12,28 @@ enum SignInType {
   none,
 }
 
-class UserModel {
+class UserEntity extends Equatable {
   final String name;
   final String uid;
+  final String? email;
   final bool isAuthenticated; // if guest or not
-  UserModel({
+  const UserEntity({
     required this.name,
     required this.uid,
+    this.email,
     required this.isAuthenticated,
   });
 
-  UserModel copyWith({
+  UserEntity copyWith({
     String? name,
     String? uid,
+    String? email,
     bool? isAuthenticated,
   }) {
-    return UserModel(
+    return UserEntity(
       name: name ?? this.name,
       uid: uid ?? this.uid,
+      email: email ?? this.email,
       isAuthenticated: isAuthenticated ?? this.isAuthenticated,
     );
   }
@@ -37,31 +42,35 @@ class UserModel {
     return {
       'name': name,
       'uid': uid,
+      'email': email,
       'isAuthenticated': isAuthenticated,
     };
   }
 
-  factory UserModel.fromMap(Map<String, dynamic> map) {
-    return UserModel(
-      name: map['name'] ?? '',
+  factory UserEntity.fromMap(Map<String, dynamic> map) {
+    return UserEntity(
       uid: map['uid'] ?? '',
+      name: map['name'] ?? '',
+      email: map['email'] ?? '',
       isAuthenticated: map['isAuthenticated'] ?? false,
     );
   }
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
-    return UserModel(
+  factory UserEntity.fromJson(Map<String, dynamic> json) {
+    return UserEntity(
       name: json['name'],
       uid: json['uid'],
+      email: json['email'],
       isAuthenticated: json['isAuthenticated'],
     );
   }
 
   // factory function from fromFirebaseUser (UserCredential::User in firebase_auth)
-  factory UserModel.fromFirebaseUser(User user) {
-    return UserModel(
+  factory UserEntity.fromFirebaseUser(User user) {
+    return UserEntity(
       name: user.email ?? user.displayName ?? user.phoneNumber ?? user.uid,
       uid: user.uid,
+      email: user.email,
       isAuthenticated: true,
     );
   }
@@ -70,22 +79,27 @@ class UserModel {
     return {
       'name': name,
       'uid': uid,
+      'email': email ?? "",
       'isAuthenticated': isAuthenticated,
     };
   }
 
   @override
+  List<Object?> get props => [name, uid, email, isAuthenticated];
+
+  @override
   String toString() {
-    return 'UserModel(name: $name, uid: $uid, isAuthenticated: $isAuthenticated)';
+    return 'UserEntity(name: $name, uid: $uid, email: $email, isAuthenticated: $isAuthenticated)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is UserModel &&
+    return other is UserEntity &&
         other.name == name &&
         other.uid == uid &&
+        other.email == email &&
         other.isAuthenticated == isAuthenticated;
   }
 

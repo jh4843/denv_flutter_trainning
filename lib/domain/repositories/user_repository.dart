@@ -1,13 +1,13 @@
 // repository abstract class to login user in domain layer
 
 import "package:denv_flutter_training/core/type_defs.dart";
-import "../models/user_model.dart";
+import '../entities/user_entity.dart';
 
 abstract class UserRepository {
-  FutureEither<UserModel> signIn(SignInType type,
+  FutureEither<UserEntity> signIn(SignInType type,
       {String? id, String? email, String? password});
 
-  FutureEither<bool> signOut(UserModel user);
+  FutureEither<bool> signOut(UserEntity user);
 
-  FutureEither<bool> updateUser(UserModel oldUser, UserModel newUser);
+  FutureEither<bool> updateUser(UserEntity oldUser, UserEntity newUser);
 }

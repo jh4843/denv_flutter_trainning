@@ -6,6 +6,20 @@ part of 'home_page.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$helloWorldHash() => r'8bbe6cff2b7b1f4e1f7be3d1820da793259f7bfc';
+
+/// See also [helloWorld].
+@ProviderFor(helloWorld)
+final helloWorldProvider = AutoDisposeProvider<String>.internal(
+  helloWorld,
+  name: r'helloWorldProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$helloWorldHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef HelloWorldRef = AutoDisposeProviderRef<String>;
 String _$classCounterHash() => r'29d2350a8fb1312b6cb924ff882e7c0951e366d2';
 
 /// See also [ClassCounter].
