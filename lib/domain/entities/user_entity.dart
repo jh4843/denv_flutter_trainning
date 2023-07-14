@@ -17,6 +17,7 @@ class UserEntity extends Equatable {
   final String uid;
   final String? email;
   final bool isAuthenticated; // if guest or not
+
   const UserEntity({
     required this.name,
     required this.uid,

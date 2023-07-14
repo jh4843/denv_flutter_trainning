@@ -1,51 +1,39 @@
-import 'package:denv_flutter_training/domain/repositories/user_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import "./auth_state.dart";
+import 'package:denv_flutter_training/domain/entities/user_entity.dart';
+import 'package:denv_flutter_training/domain/usecases/auth_usecase.dart';
 
-class AuthNotifier extends StateNotifier<AuthState> {
-  final UserRepository userRepository;
+class AuthNotifier extends StateNotifier<UserEntity?> {
+  final Ref ref;
 
-  AuthNotifier({
-    required this.userRepository,
-  }) : super(const AuthState.initial());
+  AuthNotifier(this.ref) : super(null);
 
-  Future<void> signInUser(String username, String password) async {
-    state = const AuthState.loading();
-    final response = await userRepository.signIn(
-      user: User(username: username, password: password),
-    );
-
-    state = await response.fold(
-      (failure) => AuthState.failure(failure),
-      (user) async {
-        final hasSavedUser = await userRepository.saveUser(user: user);
-        if (hasSavedUser) {
-          return const AuthState.success();
-        }
-        return AuthState.failure(CacheFailureException());
-      },
-    );
+  void setUser(UserEntity? user) {
+    state = user;
   }
 
-  // AuthNotifier({
-  //   required this.userRepository,
-  // }) : super(const AuthState.initial());
+  void clearUser() {
+    state = null;
+  }
 
-  // Future<void> loginUser(String username, String password) async {
-  //   state = const AuthState.loading();
-  //   final response = await userRepository.signIn(
-  //     user: User(username: username, password: password),
-  //   );
+  Future<void> signIn(SignInType type,
+      {String? id, String? email, String? password}) async {
+    // update UserEntity? state after sign in(with signInProvider's SignInUseCase)
 
-  //   state = await response.fold(
-  //     (failure) => AuthState.failure(failure),
-  //     (user) async {
-  //       final hasSavedUser = await userRepository.saveUser(user: user);
-  //       if (hasSavedUser) {
-  //         return const AuthState.success();
-  //       }
-  //       return AuthState.failure(CacheFailureException());
-  //     },
-  //   );
-  // }
+    final result = await ref
+        .read(signInProvider)
+        .execute(type: type, id: id, email: email, password: password);
+
+    result.fold(
+      (failure) => throw failure,
+      (user) => setUser(user),
+    );
+  }
 }
+
+final currentUserState = StateNotifierProvider<AuthNotifier, UserEntity?>(
+  (ref) => AuthNotifier(ref),
+);
+
+final currentUserModel = Provider<AuthNotifier>((ref) {
+  return ref.watch(currentUserState.notifier);
+});
