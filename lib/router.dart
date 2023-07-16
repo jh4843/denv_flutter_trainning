@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'presentation/pages/home/home_page.dart';
 import 'presentation/pages/auth/sign_in_page.dart';
 import 'presentation/pages/auth/sign_up_page.dart';
-import 'presentation/pages/ui/layout_screen.dart';
+import 'presentation/pages/layout_pages/row_col_page.dart';
 
 // GoRouter configuration
 final router = GoRouter(
@@ -15,22 +15,32 @@ final router = GoRouter(
       routes: const [],
     ),
     GoRoute(
-      path: '/signin',
-      builder: (context, state) => const SignInPage(title: 'Sign In'),
-    ),
-    GoRoute(
-      path: '/signup',
-      builder: (context, state) => const SignUpPage(title: 'Sign Up'),
+      name: "Authorization",
+      path: "/auth",
+      builder: (context, state) =>
+          const MyHomePage(title: 'Denv Flutter Training'),
+      routes: <RouteBase>[
+        GoRoute(
+          path: 'signin',
+          builder: (context, state) => const SignInPage(title: 'Sign In'),
+        ),
+        GoRoute(
+          path: 'signup',
+          builder: (context, state) => const SignUpPage(title: 'Sign Up'),
+        ),
+      ],
     ),
     //
     GoRoute(
-      path: '/ui',
-      builder: (context, state) => const MyHomePage(title: 'UI Training'),
+      name: "layouts",
+      path: "/layouts",
+      builder: (context, state) =>
+          const MyHomePage(title: 'Denv Flutter Training'),
       routes: <RouteBase>[
         GoRoute(
-          name: "layouts",
-          path: "layouts",
-          builder: (context, state) => const LayoutScreen(title: 'Layout Page'),
+          name: "Rows Columns",
+          path: "rowcol",
+          builder: (context, state) => const RowColPage(title: 'Layout Page'),
         )
       ],
     ),

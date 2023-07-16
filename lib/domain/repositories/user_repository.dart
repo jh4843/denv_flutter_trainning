@@ -5,7 +5,7 @@ import '../entities/user_entity.dart';
 
 abstract class UserRepository {
   FutureEither<UserEntity> signIn(
-      {required SignInType type, String? id, String? email, String? password});
+      {required SignInType type, String? email, String? password});
 
   FutureEither<bool> signOut(UserEntity user);
 

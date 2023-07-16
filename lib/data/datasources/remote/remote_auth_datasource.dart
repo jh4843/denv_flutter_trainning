@@ -33,8 +33,8 @@ class RemoteAuthDataSource {
         _firestore = firestore,
         _googleSignIn = googleSignIn;
 
-  FutureEither<UserEntity> signIn(SignInType type,
-      {String? id, String? email, String? password}) async {
+  FutureEither<UserEntity> signIn(
+      {required SignInType type, String? email, String? password}) async {
     try {
       switch (type) {
         case SignInType.email:

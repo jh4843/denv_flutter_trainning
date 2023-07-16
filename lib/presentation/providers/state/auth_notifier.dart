@@ -15,13 +15,16 @@ class AuthNotifier extends StateNotifier<UserEntity?> {
     state = null;
   }
 
-  Future<void> signIn(SignInType type,
-      {String? id, String? email, String? password}) async {
+  Future<void> signIn(
+      {required SignInType type,
+      String? id,
+      String? email,
+      String? password}) async {
     // update UserEntity? state after sign in(with signInProvider's SignInUseCase)
 
     final result = await ref
         .read(signInProvider)
-        .execute(type: type, id: id, email: email, password: password);
+        .execute(type: type, email: email, password: password);
 
     result.fold(
       (failure) => throw failure,

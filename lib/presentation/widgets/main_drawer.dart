@@ -24,28 +24,35 @@ class MainDrawer extends StatelessWidget {
             ),
             arrowColor: Colors.redAccent,
           ),
-          ListTile(
-            title: const Text('Home'),
-            leading: const Icon(Icons.home),
-            onTap: () {
-              context.go("/");
-            },
-          ),
-          ListTile(
-            title: const Text('Sign In'),
-            onTap: () {
-              context.go("/signin");
-            },
-          ),
           ExpansionTile(
-            title: const Text('UI'),
+            title: const Text('Authorization'),
             childrenPadding: const EdgeInsets.only(left: 30),
             children: [
               ListTile(
-                title: const Text('Layouts'),
-                leading: const Icon(Icons.dashboard),
+                title: const Text('Sign Up'),
+                leading: const Icon(Icons.person_add),
                 onTap: () {
-                  context.go("/ui/layouts");
+                  context.go("/auth/signup");
+                },
+              ),
+              ListTile(
+                title: const Text('Sign In'),
+                leading: const Icon(Icons.login),
+                onTap: () {
+                  context.go("/auth/signin");
+                },
+              ),
+            ],
+          ),
+          ExpansionTile(
+            title: const Text('Layouts'),
+            childrenPadding: const EdgeInsets.only(left: 30),
+            children: [
+              ListTile(
+                title: const Text('Rows & Cols'),
+                leading: const Icon(Icons.table_rows),
+                onTap: () {
+                  context.go("/layouts/rowcol");
                 },
               ),
             ],

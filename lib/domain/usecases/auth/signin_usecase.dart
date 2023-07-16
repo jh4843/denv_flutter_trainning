@@ -10,11 +10,8 @@ class SignInUseCase {
   SignInUseCase({required this.userRepository});
 
   FutureEither<UserEntity> execute(
-      {required SignInType type,
-      String? id,
-      String? email,
-      String? password}) async {
+      {required SignInType type, String? email, String? password}) async {
     return await userRepository.signIn(
-        type: type, id: id, email: email, password: password);
+        type: type, email: email, password: password);
   }
 }

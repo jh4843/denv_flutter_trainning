@@ -15,12 +15,9 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   FutureEither<UserEntity> signIn(
-      {required SignInType type,
-      String? id,
-      String? email,
-      String? password}) async {
-    return _remoteAuthDataSource.signIn(type,
-        id: id, email: email, password: password);
+      {required SignInType type, String? email, String? password}) async {
+    return _remoteAuthDataSource.signIn(
+        type: type, email: email, password: password);
   }
 
   @override
