@@ -21,7 +21,7 @@ $ flutter pub add firebase_core
 Configuration
 
 ```console
-$ flutterfire configure
+$ flutterfire configure --project=denv-flutter-trainning
 ```
 
 # Install Packages

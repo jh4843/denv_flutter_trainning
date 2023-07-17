@@ -55,6 +55,13 @@ class MainDrawer extends StatelessWidget {
                   context.go("/layouts/rowcol");
                 },
               ),
+              ListTile(
+                title: const Text('Container'),
+                leading: const Icon(Icons.check_box_outline_blank_rounded),
+                onTap: () {
+                  context.go("/layouts/container");
+                },
+              ),
             ],
           ),
           ExpansionTile(

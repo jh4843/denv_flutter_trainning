@@ -1,7 +1,7 @@
 {
   "file_generated_by": "FlutterFire CLI",
   "purpose": "FirebaseAppID & ProjectID for this Firebase app in this directory",
-  "GOOGLE_APP_ID": "1:486675566399:ios:75d4486bebace904d44d8a",
-  "FIREBASE_PROJECT_ID": "denv-funcs",
-  "GCM_SENDER_ID": "486675566399"
+  "GOOGLE_APP_ID": "1:600571265229:ios:16d48dabf189c76bade984",
+  "FIREBASE_PROJECT_ID": "denv-flutter-trainning",
+  "GCM_SENDER_ID": "600571265229"
 }

@@ -1,76 +1,40 @@
 {
   "project_info": {
-    "project_number": "486675566399",
-    "project_id": "denv-funcs",
-    "storage_bucket": "denv-funcs.appspot.com"
+    "project_number": "600571265229",
+    "project_id": "denv-flutter-trainning",
+    "storage_bucket": "denv-flutter-trainning.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486675566399:android:3fc30c73c7b73adbd44d8a",
+        "mobilesdk_app_id": "1:600571265229:android:3ea335044147ca29ade984",
         "android_client_info": {
           "package_name": "com.example.denv_flutter_training"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486675566399-r1b378ovjouhjvs2hjlb3qt5vepj2h7v.apps.googleusercontent.com",
+          "client_id": "600571265229-dsbo8edv4c77ql4nmm5po14q0u1os4bf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAVki1XBfHWUzS3iEHw7fKtV9_Ey85dhL4"
+          "current_key": "AIzaSyAOs495-6rq-ScYu25nU-Y1mHiA793OdS0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486675566399-r1b378ovjouhjvs2hjlb3qt5vepj2h7v.apps.googleusercontent.com",
+              "client_id": "600571265229-dsbo8edv4c77ql4nmm5po14q0u1os4bf.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486675566399-2a7c9gbsaaj6pne2dk070jufsqktgk6e.apps.googleusercontent.com",
+              "client_id": "600571265229-8m931b3j2q255gbcfjh5u6pulu06b6jd.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.exFirebaseClient"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:486675566399:android:9c837b8f0a7ce51ed44d8a",
-        "android_client_info": {
-          "package_name": "com.example.ex_firebase_client"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "486675566399-r1b378ovjouhjvs2hjlb3qt5vepj2h7v.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAVki1XBfHWUzS3iEHw7fKtV9_Ey85dhL4"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "486675566399-r1b378ovjouhjvs2hjlb3qt5vepj2h7v.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "486675566399-2a7c9gbsaaj6pne2dk070jufsqktgk6e.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.exFirebaseClient"
+                "bundle_id": "com.example.denvFlutterTraining"
               }
             }
           ]

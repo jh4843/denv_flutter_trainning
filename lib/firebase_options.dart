@@ -44,39 +44,40 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBJNoQ0IBogFnGZwkTBdrPZUnYp6bKUUi8',
-    appId: '1:486675566399:web:392ac5faa2d37b91d44d8a',
-    messagingSenderId: '486675566399',
-    projectId: 'denv-funcs',
-    authDomain: 'denv-funcs.firebaseapp.com',
-    storageBucket: 'denv-funcs.appspot.com',
+    apiKey: 'AIzaSyBP_2ksqVxSbQM4XaStG4DBlmBwqZal11g',
+    appId: '1:600571265229:web:38e43edc69720c61ade984',
+    messagingSenderId: '600571265229',
+    projectId: 'denv-flutter-trainning',
+    authDomain: 'denv-flutter-trainning.firebaseapp.com',
+    storageBucket: 'denv-flutter-trainning.appspot.com',
+    measurementId: 'G-3Q1X631BF2',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAVki1XBfHWUzS3iEHw7fKtV9_Ey85dhL4',
-    appId: '1:486675566399:android:3fc30c73c7b73adbd44d8a',
-    messagingSenderId: '486675566399',
-    projectId: 'denv-funcs',
-    storageBucket: 'denv-funcs.appspot.com',
+    apiKey: 'AIzaSyAOs495-6rq-ScYu25nU-Y1mHiA793OdS0',
+    appId: '1:600571265229:android:3ea335044147ca29ade984',
+    messagingSenderId: '600571265229',
+    projectId: 'denv-flutter-trainning',
+    storageBucket: 'denv-flutter-trainning.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDvwhH1bDl5Jt8eCp0Ljzo4O9bKJgrNsbM',
-    appId: '1:486675566399:ios:63f4b56217aa907fd44d8a',
-    messagingSenderId: '486675566399',
-    projectId: 'denv-funcs',
-    storageBucket: 'denv-funcs.appspot.com',
-    iosClientId: '486675566399-5a6rqdm3mt238b71a54fg6uknvl67od5.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBqSziKB1eMWfQ4MSf4c5m0sHgvkcF2nOs',
+    appId: '1:600571265229:ios:b6a72e46527857deade984',
+    messagingSenderId: '600571265229',
+    projectId: 'denv-flutter-trainning',
+    storageBucket: 'denv-flutter-trainning.appspot.com',
+    iosClientId: '600571265229-8m931b3j2q255gbcfjh5u6pulu06b6jd.apps.googleusercontent.com',
     iosBundleId: 'com.example.denvFlutterTraining',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDvwhH1bDl5Jt8eCp0Ljzo4O9bKJgrNsbM',
-    appId: '1:486675566399:ios:75d4486bebace904d44d8a',
-    messagingSenderId: '486675566399',
-    projectId: 'denv-funcs',
-    storageBucket: 'denv-funcs.appspot.com',
-    iosClientId: '486675566399-l8rd7c6nsp83514sh91fnuqktr473586.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBqSziKB1eMWfQ4MSf4c5m0sHgvkcF2nOs',
+    appId: '1:600571265229:ios:16d48dabf189c76bade984',
+    messagingSenderId: '600571265229',
+    projectId: 'denv-flutter-trainning',
+    storageBucket: 'denv-flutter-trainning.appspot.com',
+    iosClientId: '600571265229-uq4dvnh3tv7g1eo1c94a0gj6uovjm0g3.apps.googleusercontent.com',
     iosBundleId: 'com.example.denvFlutterTraining.RunnerTests',
   );
 }
