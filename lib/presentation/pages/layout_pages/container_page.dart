@@ -24,6 +24,13 @@ class ContainerPage extends ConsumerWidget {
             color: Colors.purple[50],
             border: Border.all(width: 10, color: Colors.black38),
             borderRadius: BorderRadius.circular(10.0),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black26,
+                blurRadius: 10.0,
+                offset: Offset(5.0, 5.0),
+              ),
+            ],
             // border: const Border(
             //   top: BorderSide(
             //       width: 3.0, color: Colors.black, style: BorderStyle.solid),

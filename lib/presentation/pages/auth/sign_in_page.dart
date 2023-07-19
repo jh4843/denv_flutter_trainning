@@ -29,7 +29,7 @@ class SignInPage extends ConsumerWidget {
               ),
               child:
                   // expand image following horizontal direction
-                  Image.asset("images/signin_background.png"),
+                  Image.asset("assets/images/signin_background.png"),
             ),
             Container(
               alignment: Alignment.center,

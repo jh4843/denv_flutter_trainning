@@ -75,7 +75,7 @@ class MyHomePage extends ConsumerWidget {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("images/home_background.png"),
+            image: AssetImage("assets/images/home_background.png"),
             fit: BoxFit.cover,
           ),
         ),

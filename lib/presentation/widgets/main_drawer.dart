@@ -1,3 +1,6 @@
+// reference: https://velog.io/@sunwonsw95/GoRouter%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-Flutter-NestedRoute-%EA%B5%AC%ED%98%84
+// reference: https://codewithandrea.com/articles/flutter-bottom-navigation-bar-nested-routes-gorouter/
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -32,14 +35,14 @@ class MainDrawer extends StatelessWidget {
                 title: const Text('Sign Up'),
                 leading: const Icon(Icons.person_add),
                 onTap: () {
-                  context.go("/auth/signup");
+                  context.go("/signup");
                 },
               ),
               ListTile(
                 title: const Text('Sign In'),
                 leading: const Icon(Icons.login),
                 onTap: () {
-                  context.go("/auth/signin");
+                  context.go("/signin");
                 },
               ),
             ],
@@ -52,14 +55,14 @@ class MainDrawer extends StatelessWidget {
                 title: const Text('Rows & Cols'),
                 leading: const Icon(Icons.table_rows),
                 onTap: () {
-                  context.go("/layouts/rowcol");
+                  context.go("/rowcol");
                 },
               ),
               ListTile(
                 title: const Text('Container'),
                 leading: const Icon(Icons.check_box_outline_blank_rounded),
                 onTap: () {
-                  context.go("/layouts/container");
+                  context.go("/container");
                 },
               ),
             ],
@@ -72,7 +75,7 @@ class MainDrawer extends StatelessWidget {
                 title: const Text('Denv Paints'),
                 leading: const Icon(Icons.draw),
                 onTap: () {
-                  context.go("/drawing/paint");
+                  context.go("/paint");
                 },
               ),
             ],
