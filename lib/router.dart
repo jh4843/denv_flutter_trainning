@@ -21,59 +21,39 @@ final _drawingShellNavigatorKey =
 final router = GoRouter(
   initialLocation: '/',
   navigatorKey: _rootNavigatorKey,
+  debugLogDiagnostics: true,
   routes: [
     GoRoute(
-      path: '/',
-      builder: (context, state) =>
-          const MyHomePage(title: 'Denv Flutter Training'),
-      routes: const [],
-    ),
-    ShellRoute(
-      navigatorKey: _authShellNavigatorKey,
-      builder: (context, state, child) => AuthShell(state: state, child: child),
-      routes: <RouteBase>[
-        GoRoute(
-          path: '/signin',
-          builder: (context, state) => const SignInPage(title: 'Sign In'),
-        ),
-        GoRoute(
-          path: '/signup',
-          builder: (context, state) => const SignUpPage(title: 'Sign Up'),
-        ),
-      ],
-    ),
-    //
-    ShellRoute(
-      navigatorKey: _layoutShellNavigatorKey,
-      builder: (context, state, child) =>
-          LayoutShell(state: state, child: child),
-      routes: <RouteBase>[
-        GoRoute(
-          name: "Rows Columns",
-          path: "/rowcol",
-          builder: (context, state) => const RowColPage(title: 'Layout Page'),
-        ),
-        GoRoute(
-          name: "Container",
-          path: "/container",
-          builder: (context, state) =>
-              const ContainerPage(title: 'Layout Page'),
-        ),
-      ],
-    ),
-    ShellRoute(
-      navigatorKey: _drawingShellNavigatorKey,
-      builder: (context, state, child) =>
-          DrawerShell(state: state, child: child),
-      routes: <RouteBase>[
-        GoRoute(
-          name: "paint",
-          path: "/paint",
-          builder: (context, state) =>
-              const PaintPage(title: 'Custom Paint Page'),
-        )
-      ],
-    )
+        path: '/',
+        builder: (context, state) =>
+            const MyHomePage(title: 'Denv Flutter Training'),
+        routes: <RouteBase>[
+          GoRoute(
+            path: 'signin',
+            builder: (context, state) => const SignInPage(title: 'Sign In'),
+          ),
+          GoRoute(
+            path: 'signup',
+            builder: (context, state) => const SignUpPage(title: 'Sign Up'),
+          ),
+          GoRoute(
+            name: "rowcol",
+            path: "rowcol",
+            builder: (context, state) => const RowColPage(title: 'Layout Page'),
+          ),
+          GoRoute(
+            name: "container",
+            path: "container",
+            builder: (context, state) =>
+                const ContainerPage(title: 'Layout Page'),
+          ),
+          GoRoute(
+            name: "paint",
+            path: "paint",
+            builder: (context, state) =>
+                const PaintPage(title: 'Custom Paint Page'),
+          )
+        ]),
   ],
 );
 
