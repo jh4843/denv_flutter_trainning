@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class SignInPage extends ConsumerWidget {
+class SignInPage extends StatefulHookConsumerWidget {
   const SignInPage({super.key, required this.title});
 
   final String title;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SignInPage> createState() => _SignInPageState();
+}
+
+class _SignInPageState extends ConsumerState<SignInPage> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(widget.title),
+      ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
