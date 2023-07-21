@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class SignInPage extends StatefulHookConsumerWidget {
   const SignInPage({super.key, required this.title});
@@ -11,6 +12,8 @@ class SignInPage extends StatefulHookConsumerWidget {
 }
 
 class _SignInPageState extends ConsumerState<SignInPage> {
+  int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,6 +65,38 @@ class _SignInPageState extends ConsumerState<SignInPage> {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (int index) {
+          setState(() {
+            _currentIndex = index;
+          });
+
+          switch (_currentIndex) {
+            case 0:
+              context.go('/');
+              break;
+            case 1:
+              context.go('/signup');
+              break;
+            default:
+              context.go('/');
+              break;
+          }
+        },
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+            backgroundColor: Colors.blue,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_add),
+            label: 'Sign up',
+            backgroundColor: Colors.green,
+          ),
+        ],
       ),
     );
   }

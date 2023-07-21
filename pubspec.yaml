@@ -45,6 +45,7 @@ dependencies:
   google_sign_in: ^6.1.4
   equatable: ^2.0.0
   dartz: ^0.10.1
+  gap: ^3.0.1
 
 dev_dependencies:
   flutter_test:
