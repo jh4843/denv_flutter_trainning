@@ -7,7 +7,9 @@ import 'presentation/pages/auth/sign_in_page.dart';
 import 'presentation/pages/auth/sign_up_page.dart';
 // layouts
 import 'presentation/pages/layout_pages/row_col_page.dart';
-import 'presentation/pages/layout_pages//container_page.dart';
+import 'presentation/pages/layout_pages/container_page.dart';
+import 'presentation/pages/layout_pages/gridview_page.dart';
+import 'presentation/pages/layout_pages/listview_page.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _authShellNavigatorKey =
@@ -28,6 +30,7 @@ final router = GoRouter(
         builder: (context, state) =>
             const MyHomePage(title: 'Denv Flutter Training'),
         routes: <RouteBase>[
+          // auth
           GoRoute(
             path: 'signin',
             builder: (context, state) => const SignInPage(title: 'Sign In'),
@@ -36,6 +39,7 @@ final router = GoRouter(
             path: 'signup',
             builder: (context, state) => const SignUpPage(title: 'Sign Up'),
           ),
+          // layout
           GoRoute(
             name: "rowcol",
             path: "rowcol",
@@ -47,6 +51,19 @@ final router = GoRouter(
             builder: (context, state) =>
                 const ContainerPage(title: 'Layout Page'),
           ),
+          GoRoute(
+            name: "gridview",
+            path: "gridview",
+            builder: (context, state) =>
+                const GridViewPage(title: 'Grid View Page'),
+          ),
+          GoRoute(
+            name: "listview",
+            path: "listview",
+            builder: (context, state) =>
+                const ListViewPage(title: 'List View Page'),
+          ),
+          // pating
           GoRoute(
             name: "paint",
             path: "paint",

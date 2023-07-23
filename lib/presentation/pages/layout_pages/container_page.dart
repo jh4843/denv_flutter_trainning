@@ -58,7 +58,7 @@ class _ContainerPageState extends ConsumerState<ContainerPage> {
               // add Container widget expanded full width and height is 40% of this widget
               Container(
                 width: double.infinity,
-                height: 100,
+                height: 50,
                 color: Colors.yellow,
                 foregroundDecoration: BoxDecoration(
                   color: Colors.red.withOpacity(0.4),
@@ -109,8 +109,8 @@ class _ContainerPageState extends ConsumerState<ContainerPage> {
                     },
                     child: Container(
                       color: Colors.red,
-                      height: 200.0,
-                      width: 200.0,
+                      height: 100.0,
+                      width: 100.0,
                     ),
                   ),
                 ),
@@ -118,10 +118,10 @@ class _ContainerPageState extends ConsumerState<ContainerPage> {
               const Gap(20), // add gap between widgets
               // padding, margin
               Container(
-                width: 150,
-                height: 150,
+                width: 80,
+                height: 80,
                 color: Colors.blue,
-                margin: const EdgeInsets.all(30),
+                margin: const EdgeInsets.fromLTRB(10, 30, 20, 40),
                 padding: const EdgeInsets.all(10),
                 alignment: Alignment.bottomLeft,
                 foregroundDecoration: BoxDecoration(

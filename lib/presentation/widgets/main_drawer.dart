@@ -65,6 +65,20 @@ class MainDrawer extends StatelessWidget {
                   context.go("/container");
                 },
               ),
+              ListTile(
+                title: const Text('Grid View'),
+                leading: const Icon(Icons.grid_3x3),
+                onTap: () {
+                  context.go("/gridview");
+                },
+              ),
+              ListTile(
+                title: const Text('List View'),
+                leading: const Icon(Icons.view_list),
+                onTap: () {
+                  context.go("/listview");
+                },
+              ),
             ],
           ),
           ExpansionTile(
