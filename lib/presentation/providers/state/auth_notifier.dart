@@ -27,7 +27,10 @@ class AuthNotifier extends StateNotifier<UserEntity?> {
         .execute(type: type, email: email, password: password);
 
     result.fold(
-      (failure) => throw failure,
+      (failure) {
+        clearUser();
+        throw failure;
+      },
       (user) => setUser(user),
     );
   }
