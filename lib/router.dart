@@ -1,4 +1,3 @@
-import 'package:denv_flutter_training/presentation/pages/drawing/paint_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
@@ -11,13 +10,19 @@ import 'presentation/pages/layout_pages/container_page.dart';
 import 'presentation/pages/layout_pages/gridview_page.dart';
 import 'presentation/pages/layout_pages/listview_page.dart';
 
+// Paint
+import 'package:denv_flutter_training/presentation/pages/drawing/paint_page_app.dart';
+import 'package:denv_flutter_training/presentation/pages/drawing/paint_page_web.dart';
+
+import 'package:flutter/foundation.dart' show kIsWeb;
+
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
-final _authShellNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'authShell');
-final _layoutShellNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'layoutShell');
-final _drawingShellNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'drawingShell');
+// final _authShellNavigatorKey =
+//     GlobalKey<NavigatorState>(debugLabel: 'authShell');
+// final _layoutShellNavigatorKey =
+//     GlobalKey<NavigatorState>(debugLabel: 'layoutShell');
+// final _drawingShellNavigatorKey =
+//     GlobalKey<NavigatorState>(debugLabel: 'drawingShell');
 
 // GoRouter configuration
 final router = GoRouter(
@@ -67,8 +72,9 @@ final router = GoRouter(
           GoRoute(
             name: "paint",
             path: "paint",
-            builder: (context, state) =>
-                const PaintPage(title: 'Custom Paint Page'),
+            builder: (context, state) => kIsWeb
+                ? const PaintPageWeb(title: 'Custom Paint Web Page')
+                : const PaintPageApp(title: 'Custom Paint Page'),
           )
         ]),
   ],

@@ -103,7 +103,6 @@ class _ContainerPageState extends ConsumerState<ContainerPage> {
                         () {
                           y = y - details.delta.dx / 100;
                           x = x + details.delta.dy / 100;
-                          print("$x, $y");
                         },
                       );
                     },
