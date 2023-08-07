@@ -17,5 +17,6 @@
     "yaml": false,
     "plaintext": true,
     "markdown": true
-  }
+  },
+  "cmake.sourceDirectory": "E:/Git/PersonalProject/denv_flutter_trainning/build/windows/extracted/firebase_cpp_sdk"
 }

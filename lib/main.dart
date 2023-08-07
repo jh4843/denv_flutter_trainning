@@ -8,9 +8,21 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 //import 'package:riverpod_annotation/riverpod_annotation.dart';
 import './router.dart';
 
+import 'package:flutter/foundation.dart'
+    show defaultTargetPlatform, kIsWeb, TargetPlatform;
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  if (defaultTargetPlatform != TargetPlatform.windows &&
+      defaultTargetPlatform != TargetPlatform.linux) {
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
+  } else {
+    print(
+        'DefaultFirebaseOptions are not supported for this platform. $defaultTargetPlatform');
+  }
+
   runApp(
     const ProviderScope(
       child: MyApp(),

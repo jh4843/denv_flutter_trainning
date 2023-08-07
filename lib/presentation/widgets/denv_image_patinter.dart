@@ -12,6 +12,10 @@ class DenvImagePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    print("size: $size");
+
+    //canvas.clipRect(Rect.fromLTWH(0, 0, size.width, size.height));
+
     // Draw the loaded image
     canvas.drawImage(image, Offset.zero, Paint());
 

@@ -35,17 +35,6 @@ class _PaintPageAppState extends ConsumerState<PaintPageApp> {
     }
 
     return null;
-
-    // final imagePicker = ImagePicker();
-    // // pick image from gallery
-    // final pickedFile = await imagePicker.pickImage(source: ImageSource.gallery);
-
-    // if (pickedFile != null) {
-    //   setState(() {
-    //     _imageFile = File(pickedFile.path);
-    //     print("file path: ${pickedFile.path} ${_imageFile!.path}");
-    //   });
-    // }
   }
 
   //Function to load image with File type to ui.Image type
@@ -101,24 +90,40 @@ class _PaintPageAppState extends ConsumerState<PaintPageApp> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (_imageFile != null)
-                FutureBuilder<ui.Image?>(
-                  future: _fileToImage(_imageFile!),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const CircularProgressIndicator();
-                    } else if (snapshot.hasData && snapshot.data != null) {
-                      return CustomPaint(
-                        painter: DenvImagePainter(snapshot.data as ui.Image),
-                        child: Image.file(
-                          _imageFile!,
-                          height: 200,
-                        ),
-                      );
-                    } else {
-                      // Placeholder widget when image data is not available
-                      return const Icon(Icons.image, size: 100);
-                    }
-                  },
+                SizedBox(
+                  width: 300,
+                  height: 300,
+                  child: FutureBuilder<ui.Image?>(
+                    future: _fileToImage(_imageFile!),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const CircularProgressIndicator();
+                      } else if (snapshot.hasData && snapshot.data != null) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 2,
+                            ),
+                          ),
+                          child: InteractiveViewer(
+                            boundaryMargin: const EdgeInsets.symmetric(
+                              horizontal: 300 / 2,
+                              vertical: 300 / 2,
+                            ),
+                            panEnabled: true,
+                            child: CustomPaint(
+                              painter:
+                                  DenvImagePainter(snapshot.data as ui.Image),
+                            ),
+                          ),
+                        );
+                      } else {
+                        // Placeholder widget when image data is not available
+                        return const Icon(Icons.image, size: 100);
+                      }
+                    },
+                  ),
                 ),
               const SizedBox(height: 20),
               ElevatedButton(
