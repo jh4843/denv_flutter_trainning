@@ -79,6 +79,39 @@ class MainDrawer extends StatelessWidget {
                   context.go("/listview");
                 },
               ),
+              ListTile(
+                title: const Text('Long List View'),
+                leading: const Icon(Icons.view_list),
+                onTap: () {
+                  context.go("/listview2");
+                },
+              ),
+            ],
+          ),
+          ExpansionTile(
+            title: const Text('Inputs'),
+            childrenPadding: const EdgeInsets.only(left: 30),
+            children: [
+              ListTile(
+                title: const Text('Input Widgets'),
+                leading: const Icon(Icons.input),
+                onTap: () {
+                  context.go("/textfield");
+                },
+              ),
+            ],
+          ),
+          ExpansionTile(
+            title: const Text('Riverpod'),
+            childrenPadding: const EdgeInsets.only(left: 30),
+            children: [
+              ListTile(
+                title: const Text('Hooks'),
+                leading: const Icon(Icons.anchor),
+                onTap: () {
+                  context.go("/hooks");
+                },
+              ),
             ],
           ),
           ExpansionTile(

@@ -9,6 +9,13 @@ import 'presentation/pages/layout_pages/row_col_page.dart';
 import 'presentation/pages/layout_pages/container_page.dart';
 import 'presentation/pages/layout_pages/gridview_page.dart';
 import 'presentation/pages/layout_pages/listview_page.dart';
+import 'presentation/pages/layout_pages/listview_page_2.dart';
+
+// inputs
+import 'presentation/pages/input_pages/text_field_page.dart';
+
+// riverpod
+import 'package:denv_flutter_training/presentation/pages/riverpod/hooks_page.dart';
 
 // Paint
 import 'package:denv_flutter_training/presentation/pages/drawing/paint_page_app.dart';
@@ -67,6 +74,26 @@ final router = GoRouter(
             path: "listview",
             builder: (context, state) =>
                 const ListViewPage(title: 'List View Page'),
+          ),
+
+          GoRoute(
+            name: "listview2",
+            path: "listview2",
+            builder: (context, state) =>
+                ListViewPage2(title: 'List View Page (Long List)'),
+          ),
+          GoRoute(
+            name: "textfield",
+            path: "textfield",
+            builder: (context, state) =>
+                const TextFieldPage(title: 'TextField Page (Basic)'),
+          ),
+          GoRoute(
+            name: "hooks",
+            path: "hooks",
+            builder: (context, state) => MyHooksPage(
+              title: "My Hooks Page",
+            ),
           ),
           // pating
           GoRoute(
