@@ -12,25 +12,12 @@ class DenvImagePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    print("size: $size");
+    print("image size: $size");
 
     //canvas.clipRect(Rect.fromLTWH(0, 0, size.width, size.height));
 
     // Draw the loaded image
     canvas.drawImage(image, Offset.zero, Paint());
-
-    // Your drawing operations on the canvas go here
-
-    // Example: Draw a red circle in the center of the image
-    final paint = Paint()
-      ..color = Colors.red
-      ..style = PaintingStyle.fill;
-
-    final centerX = size.width / 2;
-    final centerY = size.height / 2;
-    const radius = 50.0;
-
-    canvas.drawCircle(Offset(centerX, centerY), radius, paint);
   }
 
   @override
