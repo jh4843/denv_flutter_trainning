@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 
-class SignInPage extends StatefulHookConsumerWidget {
+import 'package:denv_flutter_training/presentation/widgets/inputs/auth_text_field.dart';
+
+class SignInPage extends HookConsumerWidget {
+  final String title;
   const SignInPage({super.key, required this.title});
 
-  final String title;
-
   @override
-  ConsumerState<SignInPage> createState() => _SignInPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentIndex = useState(0);
 
-class _SignInPageState extends ConsumerState<SignInPage> {
-  int _currentIndex = 0;
+    final TextEditingController idController = useTextEditingController();
+    final TextEditingController passwordController = useTextEditingController();
 
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text(title),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -43,37 +43,39 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                   // expand image following horizontal direction
                   Image.asset("assets/images/signin_background.png"),
             ),
-            Container(
-              alignment: Alignment.center,
-              color: Colors.pink,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  const Text(
-                    'Sign In',
-                  ),
-                  Text(
-                    'Sign-In',
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
-                ],
+            Expanded(
+              child: Container(
+                alignment: Alignment.center,
+                color: Colors.transparent,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    AuthTextField(
+                      hintText: 'ID',
+                      controller: idController,
+                    ),
+                    AuthTextField(
+                      hintText: 'Password',
+                      obscureText: true,
+                      controller: passwordController,
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
+        currentIndex: currentIndex.value,
         onTap: (int index) {
-          setState(() {
-            _currentIndex = index;
-          });
+          currentIndex.value = index;
 
-          switch (_currentIndex) {
+          switch (currentIndex.value) {
             case 0:
               context.go('/');
               break;
