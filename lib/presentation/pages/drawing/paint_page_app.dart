@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:denv_flutter_training/core/types/painter_types.dart';
+import 'package:denv_flutter_training/presentation/widgets/denv_shape_painter.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:denv_flutter_training/presentation/widgets/denv_image_patinter.dart';
@@ -24,6 +26,8 @@ class PaintPageApp extends StatefulHookConsumerWidget {
 
 class _PaintPageAppState extends ConsumerState<PaintPageApp> {
   File? _imageFile;
+
+  final List<DenvPath> _paths = [];
 
   // Function to pick an image from local storage
   Future<File?> _pickImageApp() async {
@@ -113,6 +117,8 @@ class _PaintPageAppState extends ConsumerState<PaintPageApp> {
                             ),
                             panEnabled: true,
                             child: CustomPaint(
+                              foregroundPainter:
+                                  DenvShapePainter(paths: _paths),
                               painter:
                                   DenvImagePainter(snapshot.data as ui.Image),
                             ),
