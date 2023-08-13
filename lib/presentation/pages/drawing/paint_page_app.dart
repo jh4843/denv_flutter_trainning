@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:denv_flutter_training/core/types/painter_types.dart';
-import 'package:denv_flutter_training/presentation/widgets/denv_shape_painter.dart';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:denv_flutter_training/presentation/widgets/denv_image_patinter.dart';
+
+import 'package:denv_flutter_training/presentation/widgets/painters/denv_shape_painter.dart';
+import 'package:denv_flutter_training/presentation/widgets/painters/denv_image_painter.dart';
 
 import 'dart:ui' as ui;
 
@@ -26,8 +28,19 @@ class PaintPageApp extends StatefulHookConsumerWidget {
 
 class _PaintPageAppState extends ConsumerState<PaintPageApp> {
   File? _imageFile;
+  PainterMode _oldPainterMode = PainterMode.select;
+  PainterMode _painterMode = PainterMode.select;
 
-  final List<DenvPath> _paths = [];
+  final List<DenvPath> _paths = [
+    DenvPath(
+        type: PathType.circle,
+        x: 150,
+        y: 200,
+        width: 10,
+        height: 20,
+        color: Colors.blue,
+        strokeWidth: 2),
+  ];
 
   // Function to pick an image from local storage
   Future<File?> _pickImageApp() async {
@@ -68,6 +81,10 @@ class _PaintPageAppState extends ConsumerState<PaintPageApp> {
   @override
   Widget build(BuildContext context) {
     // get flatform type
+
+    FocusNode focusNode = FocusNode();
+    TransformationController transformationController =
+        TransformationController();
 
     return Scaffold(
       appBar: AppBar(
@@ -110,17 +127,42 @@ class _PaintPageAppState extends ConsumerState<PaintPageApp> {
                               width: 2,
                             ),
                           ),
-                          child: InteractiveViewer(
-                            boundaryMargin: const EdgeInsets.symmetric(
-                              horizontal: 300 / 2,
-                              vertical: 300 / 2,
-                            ),
-                            panEnabled: true,
-                            child: CustomPaint(
-                              foregroundPainter:
-                                  DenvShapePainter(paths: _paths),
-                              painter:
-                                  DenvImagePainter(snapshot.data as ui.Image),
+                          child: RawKeyboardListener(
+                            autofocus: true,
+                            focusNode: focusNode,
+                            onKey: (event) {
+                              if (event.isControlPressed &&
+                                  _painterMode != PainterMode.manipulatePan) {
+                                _oldPainterMode = _painterMode;
+                                _painterMode = PainterMode.manipulatePan;
+                                print(
+                                    "mode changed to $_painterMode $transformationController.value");
+                                setState(() {});
+                              } else if (!event.isControlPressed &&
+                                  _painterMode == PainterMode.manipulatePan) {
+                                _painterMode = _oldPainterMode;
+                                print(
+                                    "mode changed to $_painterMode from $_oldPainterMode $transformationController.value");
+                                setState(() {});
+                              }
+                            },
+                            child: InteractiveViewer(
+                              transformationController:
+                                  transformationController,
+                              boundaryMargin: const EdgeInsets.symmetric(
+                                horizontal: 300 / 2,
+                                vertical: 300 / 2,
+                              ),
+                              panEnabled:
+                                  _painterMode == PainterMode.manipulatePan
+                                      ? true
+                                      : false,
+                              child: CustomPaint(
+                                foregroundPainter:
+                                    DenvShapePainter(paths: _paths),
+                                painter:
+                                    DenvImagePainter(snapshot.data as ui.Image),
+                              ),
                             ),
                           ),
                         );

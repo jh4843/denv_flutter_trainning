@@ -4,13 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // for web
-import 'dart:io' as io;
-import 'dart:typed_data';
-import 'package:universal_html/html.dart' as html;
+import 'package:file_picker/file_picker.dart';
 
 // IO Pakcages
-import 'dart:io';
-import 'package:image_picker/image_picker.dart';
 
 class PaintPageWeb extends StatefulHookConsumerWidget {
   const PaintPageWeb({super.key, required this.title});
@@ -22,89 +18,31 @@ class PaintPageWeb extends StatefulHookConsumerWidget {
 }
 
 class _PaintPageWebState extends ConsumerState<PaintPageWeb> {
-  html.File? _imageFile;
-
-  Future<String?> getBase64FromImageFile(html.File file) async {
-    final reader = html.FileReader();
-    final completer = Completer<String>();
-
-    reader.onLoad.listen((event) {
-      final base64String = reader.result as String;
-      final imageType = file.type
-          .split('/')
-          .last; // Extract image type (e.g., jpg, png, etc.)
-      final base64Image = base64String.split(',').last;
-
-      completer.complete('data:image/$imageType;base64,$base64Image');
-    });
-
-    reader.onError.listen((error) {
-      completer.completeError('Failed to read image file');
-    });
-
-    reader.readAsDataUrl(file);
-
-    return completer.future;
-  }
-
-  Future<html.File?> convertIoToFile(io.File file) async {
-    final completer = Completer<html.File>();
-
-    Uint8List bytes = await file.readAsBytes();
-
-    final blob = html.Blob([bytes]);
-    final fileName = file.path.split('/').last;
-    final fileType = file.path.split('.').last;
-    final convertedFile =
-        html.File([blob], fileName, {'type': 'image/$fileType'});
-
-    completer.complete(convertedFile);
-
-    return completer.future;
-  }
+  FilePickerResult? _pickedImage;
 
   // Function to pick an image from local storage
-  Future<html.File?> _pickImage() async {
-    final imagePicker = ImagePicker();
-    final pickedFile = await imagePicker.pickImage(source: ImageSource.gallery);
+  Future<void> _pickImage() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+    );
 
-    // convert File to html.File
-
-    if (pickedFile != null) {
-      return convertIoToFile(File(pickedFile.path));
+    if (result != null) {
+      setState(() {
+        _pickedImage = result;
+      });
     }
-
-    return null;
-
-    // final imagePicker = ImagePicker();
-    // // pick image from gallery
-    // final pickedFile = await imagePicker.pickImage(source: ImageSource.gallery);
-
-    // if (pickedFile != null) {
-    //   setState(() {
-    //     _imageFile = File(pickedFile.path);
-    //     print("file path: ${pickedFile.path} ${_imageFile!.path}");
-    //   });
-    // }
   }
 
   //Function to load image with File type to ui.Image type
-  Future<Uint8List?> _fileToImage(html.File file) async {
-    final completer = Completer<Uint8List>();
+  Future<Image?> _fileToImage(FilePickerResult file) async {
+    if (file == null) return null;
 
-    final reader = html.FileReader();
+    Image img = Image.memory(
+      file.files.first.bytes!,
+      fit: BoxFit.cover,
+    );
 
-    reader.onLoad.listen((event) {
-      completer.complete(reader.result as Uint8List);
-    });
-
-    reader.onError.listen((error) {
-      completer.completeError('Failed to read image file');
-    });
-
-    reader.readAsArrayBuffer(file);
-
-    return completer.future;
+    return img;
   }
 
   @override
@@ -135,18 +73,14 @@ class _PaintPageWebState extends ConsumerState<PaintPageWeb> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if (_imageFile != null)
-                FutureBuilder<Uint8List?>(
-                  future: _fileToImage(_imageFile!),
+              if (_pickedImage != null)
+                FutureBuilder<Image?>(
+                  future: _fileToImage(_pickedImage!),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const CircularProgressIndicator();
                     } else if (snapshot.hasData && snapshot.data != null) {
-                      return Image.memory(
-                        snapshot.data!,
-                        height: 200,
-                        fit: BoxFit.cover, // Adjust the fit mode as needed
-                      );
+                      return snapshot.data!;
                     } else {
                       // Placeholder widget when image data is not available
                       return const Icon(Icons.image, size: 100);
@@ -155,13 +89,7 @@ class _PaintPageWebState extends ConsumerState<PaintPageWeb> {
                 ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () async {
-                  html.File? pickedFile = await _pickImage();
-                  // Save the picked file to a class variable (_imageFile in this case)
-                  _imageFile = pickedFile;
-                  // Refresh the UI when a new image is picked
-                  setState(() {});
-                },
+                onPressed: _pickImage,
                 child: const Text('Pick Image'),
               ),
             ],

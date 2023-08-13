@@ -1,9 +1,24 @@
+import 'package:flutter/material.dart';
+
+enum PainterMode {
+  select,
+  //
+  manipulatePan,
+  manipulateZoom,
+  //
+  drawLine,
+  drawRect,
+  drawCircle,
+  drawText,
+  erase,
+  //
+}
+
 enum PathType {
   line,
   rect,
   circle,
   text,
-  svg,
 }
 
 // structure for paths
@@ -18,6 +33,9 @@ class DenvPath {
 
   String? text;
 
+  Color? color = Colors.black;
+  int? strokeWidth = 5;
+
   DenvPath({
     required this.type,
     required this.x,
@@ -25,5 +43,7 @@ class DenvPath {
     required this.width,
     required this.height,
     this.text,
+    this.color,
+    this.strokeWidth,
   });
 }
