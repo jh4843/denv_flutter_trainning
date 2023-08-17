@@ -26,10 +26,17 @@ class PaintPageApp extends StatefulHookConsumerWidget {
   ConsumerState<PaintPageApp> createState() => _PaintPageAppState();
 }
 
-class _PaintPageAppState extends ConsumerState<PaintPageApp> {
+class _PaintPageAppState extends ConsumerState<PaintPageApp>
+    with TickerProviderStateMixin {
   File? _imageFile;
   PainterMode _oldPainterMode = PainterMode.select;
   PainterMode _painterMode = PainterMode.select;
+
+  final TransformationController _transformationController =
+      TransformationController();
+
+  Animation<Matrix4>? _animationReset;
+  late final AnimationController _controllerReset;
 
   final List<DenvPath> _paths = [
     DenvPath(
@@ -78,15 +85,68 @@ class _PaintPageAppState extends ConsumerState<PaintPageApp> {
     return null;
   }
 
+  void _animateResetInitialize() {
+    _controllerReset.reset();
+    _animationReset = Matrix4Tween(
+      begin: _transformationController.value,
+      end: Matrix4.identity(),
+    ).animate(_controllerReset);
+    _animationReset!.addListener(_onAnimateReset);
+    _controllerReset.forward();
+  }
+
+  void _onAnimateReset() {
+    _transformationController.value = _animationReset!.value;
+    if (!_controllerReset.isAnimating) {
+      _animationReset!.removeListener(_onAnimateReset);
+      _animationReset = null;
+      _controllerReset.reset();
+    }
+  }
+
+  // Stop a running reset to home transform animation.
+  void _animateResetStop() {
+    _controllerReset.stop();
+    _animationReset?.removeListener(_onAnimateReset);
+    _animationReset = null;
+    _controllerReset.reset();
+  }
+
+  void _onInteractionStart(ScaleStartDetails details) {
+    print("onInteractionStart");
+    print("details: $details");
+
+    if (_controllerReset.status == AnimationStatus.forward) {
+      _animateResetStop();
+    }
+  }
+
+  // initState function
+  @override
+  void initState() {
+    super.initState();
+
+    _controllerReset = AnimationController(
+      duration: const Duration(milliseconds: 200),
+      vsync: this,
+    );
+  }
+
+  // dispose function
+  @override
+  void dispose() {
+    _controllerReset.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     // get flatform type
 
     FocusNode focusNode = FocusNode();
-    TransformationController transformationController =
-        TransformationController();
 
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primary,
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
@@ -98,8 +158,8 @@ class _PaintPageAppState extends ConsumerState<PaintPageApp> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Colors.blue.withOpacity(0.8),
-              Colors.grey.withOpacity(0.5),
+              Colors.blue.withOpacity(1),
+              Colors.white.withOpacity(1),
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -136,23 +196,28 @@ class _PaintPageAppState extends ConsumerState<PaintPageApp> {
                                 _oldPainterMode = _painterMode;
                                 _painterMode = PainterMode.manipulatePan;
                                 print(
-                                    "mode changed to $_painterMode $transformationController.value");
+                                    "mode changed to $_painterMode from $_oldPainterMode");
+                                print(
+                                    "transform controller \n${_transformationController.value}");
                                 setState(() {});
                               } else if (!event.isControlPressed &&
                                   _painterMode == PainterMode.manipulatePan) {
                                 _painterMode = _oldPainterMode;
                                 print(
-                                    "mode changed to $_painterMode from $_oldPainterMode $transformationController.value");
+                                    "mode changed to $_painterMode from $_oldPainterMode");
+                                print(
+                                    "transform controller \n${_transformationController.value}");
                                 setState(() {});
                               }
                             },
                             child: InteractiveViewer(
                               transformationController:
-                                  transformationController,
+                                  _transformationController,
                               boundaryMargin: const EdgeInsets.symmetric(
                                 horizontal: 300 / 2,
                                 vertical: 300 / 2,
                               ),
+                              onInteractionStart: _onInteractionStart,
                               panEnabled:
                                   _painterMode == PainterMode.manipulatePan
                                       ? true
@@ -188,6 +253,14 @@ class _PaintPageAppState extends ConsumerState<PaintPageApp> {
           ),
         ),
       ),
+      persistentFooterButtons: <Widget>[
+        IconButton(
+          onPressed: _animateResetInitialize,
+          tooltip: 'Reset',
+          color: Theme.of(context).colorScheme.inversePrimary,
+          icon: const Icon(Icons.replay),
+        ),
+      ],
     );
   }
 }

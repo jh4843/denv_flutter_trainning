@@ -12,8 +12,6 @@ class DenvImagePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    print("image size: $size");
-
     //canvas.clipRect(Rect.fromLTWH(0, 0, size.width, size.height));
 
     // Draw the loaded image
@@ -21,7 +19,7 @@ class DenvImagePainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
   }
 }

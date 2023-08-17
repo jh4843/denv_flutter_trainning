@@ -85,8 +85,6 @@ class DenvShapePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    print("shape size: $size");
-
     // draw paths
     for (var path in paths) {
       switch (path.type) {
