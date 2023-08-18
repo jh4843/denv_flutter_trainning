@@ -17,6 +17,11 @@ import 'package:path_provider/path_provider.dart';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 
+final painterModeProvider =
+    StateProvider.autoDispose<PainterMode>((ref) => PainterMode.select);
+final oldPainterModeProvider =
+    StateProvider.autoDispose<PainterMode>((ref) => PainterMode.select);
+
 class PaintPageApp extends StatefulHookConsumerWidget {
   const PaintPageApp({super.key, required this.title});
 
@@ -29,8 +34,6 @@ class PaintPageApp extends StatefulHookConsumerWidget {
 class _PaintPageAppState extends ConsumerState<PaintPageApp>
     with TickerProviderStateMixin {
   File? _imageFile;
-  PainterMode _oldPainterMode = PainterMode.select;
-  PainterMode _painterMode = PainterMode.select;
 
   final TransformationController _transformationController =
       TransformationController();
@@ -143,6 +146,9 @@ class _PaintPageAppState extends ConsumerState<PaintPageApp>
   Widget build(BuildContext context) {
     // get flatform type
 
+    final painterMode = ref.watch(painterModeProvider);
+    final oldPainterMode = ref.watch(oldPainterModeProvider);
+
     FocusNode focusNode = FocusNode();
 
     return Scaffold(
@@ -192,22 +198,24 @@ class _PaintPageAppState extends ConsumerState<PaintPageApp>
                             focusNode: focusNode,
                             onKey: (event) {
                               if (event.isControlPressed &&
-                                  _painterMode != PainterMode.manipulatePan) {
-                                _oldPainterMode = _painterMode;
-                                _painterMode = PainterMode.manipulatePan;
+                                  painterMode != PainterMode.manipulatePan) {
+                                ref
+                                    .read(oldPainterModeProvider.notifier)
+                                    .state = painterMode;
+                                ref.read(painterModeProvider.notifier).state =
+                                    PainterMode.manipulatePan;
                                 print(
-                                    "mode changed to $_painterMode from $_oldPainterMode");
+                                    "mode changed to $painterMode from $oldPainterMode");
                                 print(
                                     "transform controller \n${_transformationController.value}");
-                                setState(() {});
                               } else if (!event.isControlPressed &&
-                                  _painterMode == PainterMode.manipulatePan) {
-                                _painterMode = _oldPainterMode;
+                                  painterMode == PainterMode.manipulatePan) {
+                                ref.read(painterModeProvider.notifier).state =
+                                    oldPainterMode;
                                 print(
-                                    "mode changed to $_painterMode from $_oldPainterMode");
+                                    "mode changed to $painterMode from $oldPainterMode");
                                 print(
                                     "transform controller \n${_transformationController.value}");
-                                setState(() {});
                               }
                             },
                             child: InteractiveViewer(
@@ -219,7 +227,7 @@ class _PaintPageAppState extends ConsumerState<PaintPageApp>
                               ),
                               onInteractionStart: _onInteractionStart,
                               panEnabled:
-                                  _painterMode == PainterMode.manipulatePan
+                                  painterMode == PainterMode.manipulatePan
                                       ? true
                                       : false,
                               child: CustomPaint(

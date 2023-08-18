@@ -20,6 +20,10 @@ class DenvImagePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    if (oldDelegate is DenvImagePainter) {
+      return oldDelegate.image != oldDelegate.image;
+    }
+
     return true;
   }
 }
